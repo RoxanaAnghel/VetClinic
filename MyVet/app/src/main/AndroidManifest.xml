@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,32 +16,39 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".LoginActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <data android:scheme="mailto" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SENDTO" />
+                <data android:scheme="mailto" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
+            android:screenOrientation="portrait"
             android:parentActivityName=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.bistos.myvet.LoginActivity" />
         </activity>
-        <activity android:name=".SignUp" />
+        <activity android:name=".SignUp"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".DoctorListActivity"
-            android:label="@string/title_doctor_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="@string/title_pet_list"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".DoctorDetailActivity"
-            android:label="@string/title_doctor_detail"
+            android:label="@string/title_pet_detail"
+            android:screenOrientation="portrait"
             android:parentActivityName=".DoctorListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

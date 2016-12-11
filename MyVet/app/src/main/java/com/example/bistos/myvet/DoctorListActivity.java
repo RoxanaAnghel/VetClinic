@@ -8,16 +8,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 
-import com.example.bistos.myvet.dummy.DummyContent;
+import java.util.ArrayList;
 
-import java.util.List;
+import io.realm.Realm;
+import io.realm.RealmChangeListener;
+import io.realm.RealmResults;
 
 /**
  * An activity representing a list of Doctors. This activity
@@ -29,16 +31,24 @@ import java.util.List;
  */
 public class DoctorListActivity extends AppCompatActivity {
 
+    public static final String EXTRA_NAME = "name";
+    public static final String EXTRA_TYPE = "type";
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
      */
     private boolean mTwoPane;
+    private ArrayList<Animal> animals;
+    private Realm realm;
+    private AnimalAdapter animalAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_list);
+        realm = Realm.getInstance(this);
+
+        animals = new ArrayList<>();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -48,8 +58,8 @@ public class DoctorListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(DoctorListActivity.this, DoctorDetailActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -67,16 +77,22 @@ public class DoctorListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.DOCTOR_MODELS));
+        animalAdapter = new AnimalAdapter(realm.allObjects(Animal.class));
+        recyclerView.setAdapter(animalAdapter);
     }
 
-    public class SimpleItemRecyclerViewAdapter
-            extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
+    public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder> implements RealmChangeListener {
 
-        private final List<DoctorModel> mValues;
+        private final RealmResults<Animal> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<DoctorModel> items) {
+        public AnimalAdapter(RealmResults<Animal> items) {
             mValues = items;
+            items.addChangeListener(this);
+        }
+
+        @Override
+        public void onChange() {
+            notifyDataSetChanged();
         }
 
         @Override
@@ -89,15 +105,15 @@ public class DoctorListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
-            holder.mIdView.setText(mValues.get(position).getPosition());
-            holder.mContentView.setText(mValues.get(position).content);
+            holder.name.setText(mValues.get(position).getName());
+            holder.type.setText(mValues.get(position).getType());
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mTwoPane) {
                         Bundle arguments = new Bundle();
-                        arguments.putString(DoctorDetailFragment.ARG_ITEM_ID, holder.mItem.getPosition());
+                        arguments.putString(DoctorDetailFragment.ARG_ITEM_ID, holder.mItem.getName());
                         DoctorDetailFragment fragment = new DoctorDetailFragment();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
@@ -106,7 +122,8 @@ public class DoctorListActivity extends AppCompatActivity {
                     } else {
                         Context context = v.getContext();
                         Intent intent = new Intent(context, DoctorDetailActivity.class);
-                        intent.putExtra(DoctorDetailFragment.ARG_ITEM_ID, holder.mItem.getPosition());
+                        intent.putExtra(EXTRA_NAME, holder.mItem.getName());
+                        intent.putExtra(EXTRA_TYPE, holder.mItem.getType());
 
                         context.startActivity(intent);
                     }
@@ -121,21 +138,27 @@ public class DoctorListActivity extends AppCompatActivity {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             public final View mView;
-            public final TextView mIdView;
-            public final TextView mContentView;
-            public DoctorModel mItem;
+            public final TextView name;
+            public final TextView type;
+            public Animal mItem;
 
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
-                mIdView = (TextView) view.findViewById(R.id.id);
-                mContentView = (TextView) view.findViewById(R.id.content);
+                name = (TextView) view.findViewById(R.id.name);
+                type = (TextView) view.findViewById(R.id.type);
             }
 
             @Override
             public String toString() {
-                return super.toString() + " '" + mContentView.getText() + "'";
+                return super.toString() + " '" + type.getText() + "'";
             }
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        realm.close();
     }
 }

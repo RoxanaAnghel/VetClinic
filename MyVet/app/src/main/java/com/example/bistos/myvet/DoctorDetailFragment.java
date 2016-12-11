@@ -41,18 +41,18 @@ public class DoctorDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments().containsKey(ARG_ITEM_ID)) {
-            // Load the dummy content specified by the fragment
-            // arguments. In a real-world scenario, use a Loader
-            // to load content from a content provider.
-            dItem = DummyContent.DOCTOR_MODEL_MAP.get(getArguments().getString(ARG_ITEM_ID));
-
-            Activity activity = this.getActivity();
-            CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
-            if (appBarLayout != null) {
-                appBarLayout.setTitle(dItem.content);
-            }
-        }
+//        if (getArguments().containsKey(ARG_ITEM_ID)) {
+//            // Load the dummy content specified by the fragment
+//            // arguments. In a real-world scenario, use a Loader
+//            // to load content from a content provider.
+//            dItem = DummyContent.DOCTOR_MODEL_MAP.get(getArguments().getString(ARG_ITEM_ID));
+//
+//            Activity activity = this.getActivity();
+//            CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
+//            if (appBarLayout != null) {
+//                appBarLayout.setTitle(dItem.content);
+//            }
+//        }
     }
 
     @Override
