@@ -9,13 +9,24 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Timer;
 
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
@@ -42,6 +53,12 @@ public class DoctorListActivity extends AppCompatActivity {
     private Realm realm;
     private AnimalAdapter animalAdapter;
 
+    public static final String PETS="pets";
+    private FirebaseDatabase  database=FirebaseDatabase.getInstance();
+    private DatabaseReference mDatabase;
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +66,46 @@ public class DoctorListActivity extends AppCompatActivity {
         realm = Realm.getInstance(this);
 
         animals = new ArrayList<>();
+
+
+        //Firebase stuff
+        mAuth=FirebaseAuth.getInstance();
+
+        mAuthListener=new FirebaseAuth.AuthStateListener(){
+          @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth){
+              FirebaseUser user=firebaseAuth.getCurrentUser();
+              if(user!=null){
+                  Log.d("User is signed in"," ");
+                  Toast.makeText(DoctorListActivity.this, "Welcome"+user.getEmail(),
+                          Toast.LENGTH_SHORT).show();
+              }
+          }
+        };
+
+//        mDatabase=FirebaseDatabase.getInstance().getReference(PETS);
+//        mDatabase.child(PETS)
+//                .addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                        realm.beginTransaction();
+//                        RealmResults<Animal> realmAnimals=realm.where(Animal.class).findAll();
+//
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(DatabaseError databaseError) {
+//
+//                    }
+//                });
+
+
+
+
+
+
+        //END
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

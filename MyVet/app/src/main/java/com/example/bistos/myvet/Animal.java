@@ -2,13 +2,17 @@ package com.example.bistos.myvet;
 
 import io.realm.RealmObject;
 
-/**
- * Created by Paul.Iovan on 12/8/2016.
- */
-
 public class Animal extends RealmObject {
     private String type;
     private String name;
+
+    public Animal(String type, String name) {
+        this.type = type;
+        this.name = name;
+    }
+
+    public Animal() {
+    }
 
     public String getType() {
         return type;

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "308665636010",
+    "firebase_url": "https://myvet-9b312.firebaseio.com",
+    "project_id": "myvet-9b312",
+    "storage_bucket": "myvet-9b312.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:308665636010:android:29930a9e7e0bd4bd",
+        "android_client_info": {
+          "package_name": "com.example.bistos.myvet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "308665636010-b8ats333jktgg2i90hvfmedj7sj7q3eo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bistos.myvet",
+            "certificate_hash": "BEE5A7810B40AD0564436DD630D5126D44FE5F9F"
+          }
+        },
+        {
+          "client_id": "308665636010-qhg8182dmji84she61sipero95525852.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBD04aWs4CWm2ZUos7u7iygs84mWsi9DDI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "308665636010-qhg8182dmji84she61sipero95525852.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
