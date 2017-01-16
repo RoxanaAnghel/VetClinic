@@ -26,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 
 import io.realm.Realm;
@@ -54,10 +55,29 @@ public class DoctorListActivity extends AppCompatActivity {
     private AnimalAdapter animalAdapter;
 
     public static final String PETS="pets";
-    private FirebaseDatabase  database=FirebaseDatabase.getInstance();
-    private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference mUsersRef=mRootRef.child("users");
+    FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+    DatabaseReference mAnimalsRef=mUsersRef.child(user.getUid());
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAnimalsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<Animal> firebaseAnimalData=dataSnapshot.getValue(List.class);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,28 +103,6 @@ public class DoctorListActivity extends AppCompatActivity {
           }
         };
 
-//        mDatabase=FirebaseDatabase.getInstance().getReference(PETS);
-//        mDatabase.child(PETS)
-//                .addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(DataSnapshot dataSnapshot) {
-//                        realm.beginTransaction();
-//                        RealmResults<Animal> realmAnimals=realm.where(Animal.class).findAll();
-//
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(DatabaseError databaseError) {
-//
-//                    }
-//                });
-
-
-
-
-
-
-        //END
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

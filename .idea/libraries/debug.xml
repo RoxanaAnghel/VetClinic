@@ -1,0 +1,29 @@
+<component name="libraryTable">
+  <library name="debug">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/MyVet/app/build/intermediates/pre-dexed/debug/support-annotations-24.2.1_a244462ca0a8b1996d26f751cad621fe761c9a38.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MyVet/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-24.2.1_71f12dddcfdb7eaebdd0e02667bd7e5989f6cab7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MyVet/app/build/intermediates/pre-dexed/debug/debug_10ce912bfd890cfa6895faaca9e5f0880dfa5ee5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MyVet/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-24.2.1_b5c3f4736f2b4e67c9dc45716bf56bc8b9bcdf4b.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MyVet/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-24.2.1_e8bb6cd85f3b0feced7208ce449e48033e881b3d.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MyVet/app/build/intermediates/pre-dexed/debug/com.android.support-design-24.2.1_deb56327462bb92be176c1d689dd4dc5ee054a1d.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MyVet/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-24.2.1_f33bc3a4fac7a6866eee73c1a20fab810e11eaad.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MyVet/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-24.2.1_df5c2f9ee339a0ad6bea2dcb20c6f5e2e9398486.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MyVet/app/build/intermediates/pre-dexed/debug/com.github.PhilJay-MPAndroidChart-Realm-v2.0.2_482c646e76f254fc563180e2e142c61be315b6d7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MyVet/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-24.2.1_cfd42b305d4042ab8170f6a11fa03ca26fcf044b.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MyVet/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-24.2.1_37457de2f15610b902aca671c151a20fefd06110.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MyVet/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_14c3befeff9509b55825380558fb824841100e44.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MyVet/app/build/intermediates/pre-dexed/debug/MPAndroidChart-v3.0.0_bbf26e7a739706395acfd60c2861861d18503df2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MyVet/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.2.1_b6e48835343e74ddf59cd52fad033bd67a42afb5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MyVet/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-24.2.1_3c7accd51965626e6fad3ff51057e6a473092931.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MyVet/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_89b600ce45fde4098c386e9577341a75d2f88a9b.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MyVet/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-24.2.1_faca017c97095bbb25d4c010237de030890662a9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MyVet/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_b68cc3336f3551c8d94c0a223608d8e706daa81e.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MyVet/app/build/intermediates/pre-dexed/debug/realm-android-0.87.4_37cdfbb831869052d8a5f0df2c375dbd6646fccb.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MyVet/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_d67779e535006ec13b347ba3b23ce57b986bc6d8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MyVet/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_5eef80e746eea98992a4104e4bb073038c6dbada.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

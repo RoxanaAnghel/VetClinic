@@ -94,4 +94,5 @@
     <string name="title_pet_detail">Pet Detail</string>
     <string name="save">Save</string>
     <string name="delete">Delete</string>
+    <string name="title_activity_home">HomeActivity</string>
 </resources>

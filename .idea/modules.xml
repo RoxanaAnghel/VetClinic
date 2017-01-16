@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/MyVet/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.1/24.2.1.iml" filepath="$PROJECT_DIR$/MyVet/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.1/24.2.1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyVet/app/src/androidTest/androidTest.iml" filepath="$PROJECT_DIR$/MyVet/app/src/androidTest/androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyVet/app/build/generated/source/apt/apt.iml" filepath="$PROJECT_DIR$/MyVet/app/build/generated/source/apt/apt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyVet/app/build/generated/source/buildConfig/buildConfig.iml" filepath="$PROJECT_DIR$/MyVet/app/build/generated/source/buildConfig/buildConfig.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyVet/app/build/intermediates/manifests/full/debug/debug.iml" filepath="$PROJECT_DIR$/MyVet/app/build/intermediates/manifests/full/debug/debug.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyVet/app/src/main/main.iml" filepath="$PROJECT_DIR$/MyVet/app/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyVet/app/build/generated/source/r/r.iml" filepath="$PROJECT_DIR$/MyVet/app/build/generated/source/r/r.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyVet/app/build/intermediates/manifests/full/release/release.iml" filepath="$PROJECT_DIR$/MyVet/app/build/intermediates/manifests/full/release/release.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyVet/app/src/test/test.iml" filepath="$PROJECT_DIR$/MyVet/app/src/test/test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyVet/app/build/intermediates/exploded-aar/com.github.PhilJay/MPAndroidChart-Realm/v2.0.2/v2.0.2.iml" filepath="$PROJECT_DIR$/MyVet/app/build/intermediates/exploded-aar/com.github.PhilJay/MPAndroidChart-Realm/v2.0.2/v2.0.2.iml" />
+    </modules>
+  </component>
+</project>

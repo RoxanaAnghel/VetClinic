@@ -29,6 +29,8 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -53,10 +55,15 @@ public class DoctorDetailActivity extends AppCompatActivity {
     private String type;
     private PieChart mChart;
     private String[] animalTypes = {"Dog", "Cat", "Rabbit", "Snake", "Hamster", "Chameleon"};
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("message");
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        myRef.setValue("buna");
         setContentView(R.layout.activity_doctor_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         nameTextView = (TextView) findViewById(R.id.name);

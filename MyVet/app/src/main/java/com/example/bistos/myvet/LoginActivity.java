@@ -258,7 +258,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                             }
                             else{
-                                startActivity(new Intent(LoginActivity.this,DoctorListActivity.class));
+                                startActivity(new Intent(LoginActivity.this,HomeActivity.class));
                             }
                         }
                     });
