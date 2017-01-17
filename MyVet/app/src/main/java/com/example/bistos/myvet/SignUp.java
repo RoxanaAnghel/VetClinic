@@ -17,6 +17,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import io.realm.Realm;
+
 public class SignUp extends AppCompatActivity {
 
     Button mSignUpButton;

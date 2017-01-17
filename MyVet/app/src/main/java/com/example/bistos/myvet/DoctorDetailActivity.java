@@ -21,6 +21,7 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bistos.myvet.Service.Service;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -29,12 +30,15 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 /**
  * An activity representing a single Doctor detail screen. This
@@ -49,40 +53,39 @@ public class DoctorDetailActivity extends AppCompatActivity {
     private TextView typeTextView;
     private Realm realm;
     private boolean hasExtras;
-    private String oldname;
-    private String oldtype;
     public String ID;
     private String name;
     private String type;
     private PieChart mChart;
     private String[] animalTypes = {"Dog", "Cat", "Rabbit", "Snake", "Hamster", "Chameleon"};
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("message");
+
+    DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference mAnmialsRef=mRootRef.child("animal");
+    FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+    Service service;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        myRef.setValue("buna");
         setContentView(R.layout.activity_doctor_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         nameTextView = (TextView) findViewById(R.id.name);
         typeTextView = (TextView) findViewById(R.id.type);
         hasExtras = getIntent().getExtras() != null;
         name = getIntent().getStringExtra(DoctorListActivity.EXTRA_NAME);
-        oldname = name;
         ID=getIntent().getStringExtra(DoctorListActivity.EXTRA_ID);
         type = getIntent().getStringExtra(DoctorListActivity.EXTRA_TYPE);
-        oldtype = type;
         if (hasExtras) {
             toolbar.setTitle(name);
             nameTextView.setText(name);
             typeTextView.setText(type);
         }
         setSupportActionBar(toolbar);
-        realm = Realm.getInstance(this);
 
+
+        service=new Service() ;
 
         mChart = (PieChart) findViewById(R.id.pieLayout);
         mChart.setUsePercentValues(true);
@@ -268,12 +271,7 @@ public class DoctorDetailActivity extends AppCompatActivity {
     }
 
     int[] getEveryTypeCount() {
-        int[] myList = new int[10];
-        for (int i = 0; i < animalTypes.length; i++) {
-            int nr = realm.where(Animal.class).equalTo("type", animalTypes[i]).findAll().size();
-            myList[i] = nr;
-        }
-        return myList;
+        return service.getEveryTypeCount();
     }
 
     @Override
@@ -296,22 +294,11 @@ public class DoctorDetailActivity extends AppCompatActivity {
 
             case R.id.menu_item_save: {
                 if (!TextUtils.isEmpty(nameTextView.getText().toString()) && !TextUtils.isEmpty(typeTextView.getText().toString())) {
-                    Animal animal;
-                    //animal exists-> update details, otherwise create new object
                     if (!hasExtras) {
-                        realm.beginTransaction();
-                        animal = realm.createObject(Animal.class);
-                        animal.setName(nameTextView.getText().toString());
-                        animal.setType(typeTextView.getText().toString());
-                        realm.commitTransaction();
+                        service.addAnimal(nameTextView.getText().toString(),typeTextView.getText().toString());
                         finish();
                     } else {
-                        realm.beginTransaction();
-                        animal = realm.where(Animal.class).equalTo("name", oldname).equalTo("type", oldtype).findFirst();
-                        //animal=realm.where(Animal.class).equalTo("id",ID).findFirst();
-                        animal.setName(nameTextView.getText().toString());
-                        animal.setType(typeTextView.getText().toString());
-                        realm.commitTransaction();
+                        service.updateAnimal(ID,nameTextView.getText().toString(),typeTextView.getText().toString());
                         finish();
                     }
                 } else {
@@ -321,12 +308,7 @@ public class DoctorDetailActivity extends AppCompatActivity {
             }
 
             case R.id.menu_item_delete: {
-                realm.beginTransaction();
-                Animal animal = realm.where(Animal.class).equalTo("name", oldname).equalTo("type", oldtype).findFirst();
-                if (animal != null) {
-                    animal.removeFromRealm();
-                }
-                realm.commitTransaction();
+                service.deleteAnimal(ID);
                 finish();
                 break;
             }
@@ -337,6 +319,5 @@ public class DoctorDetailActivity extends AppCompatActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        realm.close();
     }
 }

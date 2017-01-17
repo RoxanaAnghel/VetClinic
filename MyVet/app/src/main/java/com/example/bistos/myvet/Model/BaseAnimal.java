@@ -1,10 +1,10 @@
-package com.example.bistos.myvet;
+package com.example.bistos.myvet.Model;
 
-import java.util.UUID;
+/**
+ * Created by Bistos12 on 1/17/2017.
+ */
 
-import io.realm.RealmObject;
-
-public class Animal extends RealmObject {
+public class BaseAnimal {
     private String type;
     private String name;
 
@@ -22,13 +22,12 @@ public class Animal extends RealmObject {
         this.id = id;
     }
 
-    public Animal(String type, String name) {
+    public BaseAnimal(String type, String name) {
         this.type = type;
         this.name = name;
-        this.id= UUID.randomUUID().toString();
     }
 
-    public Animal() {
+    public BaseAnimal() {
     }
 
     public String getType() {
@@ -46,5 +45,6 @@ public class Animal extends RealmObject {
     public void setName(String name) {
         this.name = name;
     }
+
 
 }

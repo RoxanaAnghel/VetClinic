@@ -14,8 +14,6 @@ public class ContactActivity extends AppCompatActivity {
     Button mButonSend;
     EditText mEditText;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
