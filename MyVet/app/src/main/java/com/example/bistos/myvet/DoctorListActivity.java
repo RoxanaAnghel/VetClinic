@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +13,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -45,6 +49,8 @@ public class DoctorListActivity extends AppCompatActivity {
 
     public static final String EXTRA_NAME = "name";
     public static final String EXTRA_TYPE = "type";
+    public static final String EXTRA_ID = "id";
+
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
@@ -109,6 +115,12 @@ public class DoctorListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,6 +141,17 @@ public class DoctorListActivity extends AppCompatActivity {
             // activity should be in two-pane mode.
             mTwoPane = true;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id=item.getItemId();
+        switch (id){
+            case android.R.id.home:{
+                NavUtils.navigateUpTo(this,new Intent(this,HomeActivity.class));
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
@@ -163,6 +186,7 @@ public class DoctorListActivity extends AppCompatActivity {
             holder.name.setText(mValues.get(position).getName());
             holder.type.setText(mValues.get(position).getType());
 
+
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -179,6 +203,7 @@ public class DoctorListActivity extends AppCompatActivity {
                         Intent intent = new Intent(context, DoctorDetailActivity.class);
                         intent.putExtra(EXTRA_NAME, holder.mItem.getName());
                         intent.putExtra(EXTRA_TYPE, holder.mItem.getType());
+                        intent.putExtra(EXTRA_ID,holder.mItem.getId());
 
                         context.startActivity(intent);
                     }

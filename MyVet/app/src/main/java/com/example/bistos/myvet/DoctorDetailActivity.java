@@ -51,6 +51,7 @@ public class DoctorDetailActivity extends AppCompatActivity {
     private boolean hasExtras;
     private String oldname;
     private String oldtype;
+    public String ID;
     private String name;
     private String type;
     private PieChart mChart;
@@ -71,6 +72,7 @@ public class DoctorDetailActivity extends AppCompatActivity {
         hasExtras = getIntent().getExtras() != null;
         name = getIntent().getStringExtra(DoctorListActivity.EXTRA_NAME);
         oldname = name;
+        ID=getIntent().getStringExtra(DoctorListActivity.EXTRA_ID);
         type = getIntent().getStringExtra(DoctorListActivity.EXTRA_TYPE);
         oldtype = type;
         if (hasExtras) {
@@ -306,6 +308,7 @@ public class DoctorDetailActivity extends AppCompatActivity {
                     } else {
                         realm.beginTransaction();
                         animal = realm.where(Animal.class).equalTo("name", oldname).equalTo("type", oldtype).findFirst();
+                        //animal=realm.where(Animal.class).equalTo("id",ID).findFirst();
                         animal.setName(nameTextView.getText().toString());
                         animal.setType(typeTextView.getText().toString());
                         realm.commitTransaction();
